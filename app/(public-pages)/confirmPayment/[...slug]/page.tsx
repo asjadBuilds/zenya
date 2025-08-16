@@ -4,12 +4,7 @@ import { confirmAppointment } from "@/services/paymentApi"
 import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 
-type Props = {
-    params:{
-        slug:string[]
-    }
-}
-const page = ({params}:Props) => {
+const page = ({ params }: { params: { slug: string[] } }) => {
     const router = useRouter();
     const [doctorId, doctorName, fee, appointmentId] = params.slug;
     const decodeDocName = decodeURIComponent(doctorName)
