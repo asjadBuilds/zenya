@@ -50,10 +50,10 @@ const DoctorReviews = ({ doctorId }: Props) => {
         mutate({ doctorId, rating: rating.length, comment: reviewMsg })
     }
     return (
-        <div className="bg-emerald-50 rounded-xl flex flex-col gap-2 p-2">
+        <div className="bg-card-primary rounded-xl flex flex-col gap-2 p-2">
             <h1 className="font-sans font-semibold">Reviews</h1>
             {reviews?.data.length ? reviews?.data?.map((review: any, index: number) => (
-                <div key={index} className="flex flex-col gap-1 p-2 bg-emerald-100 rounded-xl">
+                <div key={index} className="flex flex-col gap-1 p-2 bg-emerald-100 dark:bg-emerald-900 rounded-xl">
                     <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2">
                             <Avatar>

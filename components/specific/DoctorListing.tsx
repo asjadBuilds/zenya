@@ -29,7 +29,7 @@ const DoctorListing = ({ categoryId, country = '', city = '', query = '' }: Prop
     return (
         <div className='flex flex-wrap gap-4 justify-start w-full px-10'>
             {doctors ? doctors?.data?.map((doctor: any, index: number) => (
-                <div key={index} className='flex flex-col justify-between gap-2 bg-gray-50 rounded-xl md:w-1/4 w-full shadow-md p-2 h-48'>
+                <div key={index} className='flex flex-col justify-between gap-2 bg-card text-foreground rounded-xl md:w-1/4 w-full shadow-md p-2 h-48'>
                     <div className='flex gap-3'>
                         <Image src={doctor?.avatar} alt={doctor?.fullname} width={100} height={100} className='rounded-xl'/>
                         <div className='flex flex-col justify-start gap-2'>
@@ -48,7 +48,7 @@ const DoctorListing = ({ categoryId, country = '', city = '', query = '' }: Prop
                 </div>
             )) :
                 queryDoctors?.data?.map((doctor: any) => (
-                    <div className='flex flex-col justify-between gap-2 bg-gray-50 rounded-xl w-1/4 shadow-md p-2 h-48'>
+                    <div className='flex flex-col justify-between gap-2 bg-card  text-foreground rounded-xl w-1/4 shadow-md p-2 h-48'>
                         <div className='flex gap-3'>
                             <Image src={doctor?.avatar} alt={doctor?.fullname} width={100} height={100} />
                             <div className='flex flex-col justify-start gap-2'>

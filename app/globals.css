@@ -33,10 +33,12 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-primary-hover:var(--primary-hover);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-card-primary: var(--card-primary);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -47,11 +49,13 @@
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(98.5% 0.002 247.839);
   --card-foreground: oklch(0.145 0 0);
+  --card-primary: oklch(97.9% 0.021 166.113);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(69.6% 0.17 162.48);
+  --primary-hover: #ecfdf5;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -79,14 +83,16 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #222831;
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(26.9% 0 0);
   --card-foreground: oklch(0.985 0 0);
+  --card-primary:  oklch(26.2% 0.051 172.552);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
+  --primary: oklch(69.6% 0.17 162.48);
   --primary-foreground: oklch(0.205 0 0);
+  --primary-hover: #ecfdf5;
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -124,7 +130,7 @@
 
 .react-tel-input .form-control {
   width: 100% !important;
-  @apply !border-input !rounded-md
+  @apply !border-input !rounded-md dark:bg-emerald-950
 }
 
 .stsearch-box input {

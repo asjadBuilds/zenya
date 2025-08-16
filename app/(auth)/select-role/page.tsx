@@ -8,7 +8,7 @@ const page = () => {
     const [role, setRole] = useState('USER');
     const router = useRouter();
   return (
-    <div className='flex flex-col h-screen w-full items-center justify-center bg-gray-100'>
+    <div className='flex flex-col h-screen w-full items-center justify-center bg-gray-100 dark:bg-background'>
         <div className='flex flex-col text-center'>
             <h1 className='text-3xl font-bold font-sans text-primary'>Choose Your Role</h1>
             <p className='text-sm font-mono'>Select the Role from the options:</p>

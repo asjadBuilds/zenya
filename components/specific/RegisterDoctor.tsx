@@ -120,6 +120,7 @@ const RegisterDoctor = () => {
               country={'pk'}
               value={phone}
               onChange={phone => setValue('phone', phone)}
+              
             />
             {errors.phone && <p className='text-red-500 text-sm'>{errors.phone.message}</p>}
           </div>

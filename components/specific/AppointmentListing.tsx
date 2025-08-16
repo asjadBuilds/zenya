@@ -40,7 +40,7 @@ const AppointmentListing = ({ doctorId }: Props) => {
     mutate({ doctorId, dateTime })
   }
   return (
-    <div className="bg-emerald-50 rounded-xl flex flex-col gap-2 p-2">
+    <div className="bg-card-primary rounded-xl flex flex-col gap-2 p-2">
       <h1 className="font-sans font-semibold">Appointments</h1>
       <div className="flex flex-col gap-3">
         {doctor?.data?.availableSlots?.length ? doctor?.data?.availableSlots.map((slot: any, index: number) => (

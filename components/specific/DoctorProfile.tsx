@@ -27,7 +27,7 @@ const DoctorProfile = ({ doctorId }: Props) => {
     })
     return (
         <div className="flex flex-col w-full gap-4">
-            <div className="bg-emerald-50 rounded-xl flex flex-col">
+            <div className=" bg-card-primary rounded-xl flex flex-col">
                 <div className="flex max-md:flex-col items-center justify-between p-4">
                     <Image src={doctor?.data?.avatar || '/assets/zenya-logo-green.png'} alt={doctor?.data?.fullname || 'user'} width={200} height={200} className="rounded-full border-4 border-primary" />
                     <div className="flex flex-col gap-2 text-sm">
@@ -52,7 +52,7 @@ const DoctorProfile = ({ doctorId }: Props) => {
                     </div>
                 </div>
             </div>
-            <div className="bg-emerald-50 rounded-xl p-4">
+            <div className="bg-card-primary rounded-xl p-4">
                 <h1 className="font-sans font-semibold">Experience</h1>
                 {doctor?.data?.experience?.length ? <Table>
                     <TableHeader>
@@ -80,7 +80,7 @@ const DoctorProfile = ({ doctorId }: Props) => {
                     </div>}
 
             </div>
-            <div className="bg-emerald-50 rounded-xl p-4">
+            <div className="bg-card-primary rounded-xl p-4">
                 <h1 className="font-sans font-semibold">Education</h1>
                 {doctor?.data?.education?.length ? <Table>
                     <TableHeader>
