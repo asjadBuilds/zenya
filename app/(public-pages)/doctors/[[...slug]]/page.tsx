@@ -3,35 +3,36 @@ import LocationFilter from '@/components/specific/LocationFilter'
 import React from 'react'
 
 type PageProps = {
-  params: {
-    slug?: string[];
-  };
-  searchParams: {
-    country?: string;
-    state?: string;
-    city?: string;
-    search?: string;
-  };
+    params: Promise<{
+        slug?: string[];
+    }>;
+    searchParams: Promise<{
+        country?: string;
+        state?: string;
+        city?: string;
+        search?: string;
+    }>;
 };
-const page = async({ params, searchParams }: PageProps) => {
+const page = async ({ params, searchParams }: PageProps) => {
     let id: string | undefined;
-  let doctorName: string | undefined;
-
-  if (params.slug && params.slug.length >= 2) {
-    const [title, categoryId] = params.slug;
-    doctorName = decodeURIComponent(title);
-    id = categoryId;
-  }
-     const queryDoctor = searchParams.search ? decodeURIComponent(searchParams.search) : "";
+    let doctorName: string | undefined;
+    const { slug } = await params;
+    if (slug && slug.length >= 2) {
+        const [title, categoryId] = slug;
+        doctorName = decodeURIComponent(title);
+        id = categoryId;
+    }
+    const { search, country, state, city } = await searchParams
+    const queryDoctor = search ? decodeURIComponent(search) : "";
     return (
         <div className='flex flex-col items-center gap-8'>
             <h1 className='text-3xl font-bold max-md:text-center'>{doctorName || queryDoctor}</h1>
             <LocationFilter />
-            <DoctorListing 
-            categoryId={id || ""}
-        country={searchParams.country || ""}
-        city={searchParams.city || ""}
-        query={searchParams.search || ""} />
+            <DoctorListing
+                categoryId={id || ""}
+                country={country || ""}
+                city={city || ""}
+                query={search || ""} />
         </div>
     )
 }
