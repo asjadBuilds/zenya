@@ -4,9 +4,10 @@ import { confirmAppointment } from "@/services/paymentApi"
 import { useRouter } from "next/navigation"
 import { useMutation } from "@tanstack/react-query"
 
-const page = ({ params }: { params: { slug: string[] } }) => {
+const page = async({ params }: { params: Promise<{ slug: string[] }> }) => {
     const router = useRouter();
-    const [doctorId, doctorName, fee, appointmentId] = params.slug;
+    const {slug} = await params;
+    const [doctorId, doctorName, fee, appointmentId] =  slug;
     const decodeDocName = decodeURIComponent(doctorName)
     const {mutate} = useMutation({
         mutationFn:confirmAppointment,
