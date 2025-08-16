@@ -1,4 +1,5 @@
-export const BASE_URL = 'http://localhost:5000';
+// export const BASE_URL = 'http://localhost:5000';
+export const BASE_URL = 'https://zenya-backend.onrender.com';
 
 export const CONFIG = {
     getCategories: `${BASE_URL}/api/doctor/getCategories`,
