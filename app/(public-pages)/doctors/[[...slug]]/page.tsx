@@ -19,8 +19,8 @@ const page = async ({ params, searchParams }: PageProps) => {
     const { slug } = await params;
     if (slug && slug.length >= 2) {
         const [title, categoryId] = slug;
-        console.log(categoryId)
-        doctorName = decodeURIComponent(title);
+        console.log(slug)
+        doctorName = title
         id = categoryId;
     }
     const { search, country, state, city } = await searchParams

@@ -21,6 +21,15 @@ const toggleSortFor = <T>(
 }));
 }
 
+const createSlug = (name: string) => {
+  return name
+    .toLowerCase()
+    .replace(/\//g, "-")       // Replace slashes
+    .replace(/\s+/g, "-")      // Replace spaces
+    .replace(/[^a-z0-9-]/g, ""); // Remove special chars
+};
 
 
-export {getNested, toggleSortFor}
+
+
+export {getNested, toggleSortFor, createSlug}
