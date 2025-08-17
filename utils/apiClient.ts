@@ -32,7 +32,7 @@ apiClient.interceptors.request.use(async (config) => {
     // ✅ Client-side: Use js-cookie
     token = Cookies.get("token") || "";
   }
-
+  console.log('accessToken',token)
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
