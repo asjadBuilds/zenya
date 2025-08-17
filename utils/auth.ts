@@ -71,14 +71,14 @@ export const authOptions: NextAuthOptions = {
                 const cookie = await cookies();
                 const isProd = process.env.NODE_ENV === "production";
                 cookie.set("accessToken", accessToken, {
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true,
                     sameSite: isProd ? "none" : "lax",
                     maxAge: 60 * 60 * 8 // 8 hours
                 });
 
                 cookie.set("refreshToken", refreshToken, {
-                    httpOnly: true,
+                    httpOnly: false,
                     secure: true,
                     sameSite: isProd ? "none" : "lax",
                     maxAge: 60 * 60 * 24 * 7 // 7 days

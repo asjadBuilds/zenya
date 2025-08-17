@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
-  withCredentials:true,
+  // withCredentials:true,
 });
 
 let isRefreshing = false;
@@ -23,28 +23,26 @@ const processQueue = (error: any, token: string | null = null) => {
 
 apiClient.interceptors.request.use(async (config) => {
   let token = "";
-console.log(typeof window)
   if (typeof window === "undefined") {
     // ✅ Server-side: Use dynamic import to avoid build issues
     const { cookies } = await import("next/headers");
     token = (await cookies()).get("accessToken")?.value || "";
-    console.log('accessToken in server side', token)
-  } else {
+  }
+  else {
     // ✅ Client-side: Use js-cookie
-    token = Cookies.get("token") || "";
-    console.log("accessToken in client side", token)
+    token = Cookies.get("accessToken") || "";
   }
-  console.log('accessToken',token)
   if (token) {
-    apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
-
   return config;
 });
 
 apiClient.interceptors.response.use(
+  
   response => response, // if response is OK, just return it
   async error => {
+    console.log('interceptor for refresh token called')
     const originalRequest = error.config;
 
     // If access token expired and this is not a retry yet
@@ -66,12 +64,23 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
+        let refreshToken = "";
+        if (typeof window === "undefined") {
+          // ✅ Server-side: Use dynamic import to avoid build issues
+          console.log('server side running')
+          const { cookies } = await import("next/headers");
+          refreshToken = (await cookies()).get("refreshToken")?.value || "";
+        }
+        else {
+          // ✅ Client-side: Use js-cookie
+          console.log('client side running')
+          refreshToken = Cookies.get("refreshToken") || "";
+        }
         const res = await axios.post(
           CONFIG.refreshAccesToken,
-          {},
+          {refreshToken},
           { withCredentials: true }
         );
-        console.log('refresh token api called')
 
         const newAccessToken = res.data.accessToken;
 
