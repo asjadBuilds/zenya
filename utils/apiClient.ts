@@ -21,26 +21,26 @@ const processQueue = (error: any, token: string | null = null) => {
   failedQueue = [];
 };
 
-// apiClient.interceptors.request.use(async (config) => {
-//   let token = "";
+apiClient.interceptors.request.use(async (config) => {
+  let token = "";
+console.log(typeof window)
+  if (typeof window === "undefined") {
+    // ✅ Server-side: Use dynamic import to avoid build issues
+    const { cookies } = await import("next/headers");
+    token = (await cookies()).get("accessToken")?.value || "";
+    console.log('accessToken in server side', token)
+  } else {
+    // ✅ Client-side: Use js-cookie
+    token = Cookies.get("token") || "";
+    console.log("accessToken in client side", token)
+  }
+  console.log('accessToken',token)
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
 
-//   if (typeof window === "undefined" || "object") {
-//     // ✅ Server-side: Use dynamic import to avoid build issues
-//     const { cookies } = await import("next/headers");
-//     token = (await cookies()).get("accessToken")?.value || "";
-//     console.log('accessToken in server side', token)
-//   } else {
-//     // ✅ Client-side: Use js-cookie
-//     token = Cookies.get("token") || "";
-//     console.log("accessToken in client side", token)
-//   }
-//   console.log('accessToken',token)
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-
-//   return config;
-// });
+  return config;
+});
 
 apiClient.interceptors.response.use(
   response => response, // if response is OK, just return it
