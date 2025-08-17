@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Button } from "../ui/button"
 import TodayAppointments from "./TodayAppointments"
 import ReviewTable from "./ReviewTable";
+import ConnectGoogleCalender from "./ConnectGoogleCalender";
 
 const DoctorDashboard = async(session:any) => {
     const username = session?.session?.user?.username;
@@ -17,6 +18,7 @@ const DoctorDashboard = async(session:any) => {
         </div>
         <TodayAppointments/>
         <ReviewTable/>
+        <ConnectGoogleCalender/>
     </div>
   )
 }
