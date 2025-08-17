@@ -2,9 +2,8 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import { login, registerSocialUser, saveRefreshToken } from "@/services/authApi";
+import { login, registerSocialUser } from "@/services/authApi";
 import { cookies } from "next/headers";
-import axios from "axios";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -23,17 +22,18 @@ export const authOptions: NextAuthOptions = {
                     const { id, email, role, isVerified, username, avatar, accessToken, refreshToken } = res.data;
                     // console.log('accessToken: ', accessToken, 'refreshToken: ', refreshToken)
                     const cookie = await cookies();
+                    const isProd = process.env.NODE_ENV === "production";
                     cookie.set("accessToken", accessToken, {
                         httpOnly: true,
                         secure: true,
-                        sameSite: "lax",
+                        sameSite: isProd ? "none" : "lax",
                         maxAge: 60 * 60 * 8 // 8 hours
                     });
 
                     cookie.set("refreshToken", refreshToken, {
                         httpOnly: true,
                         secure: true,
-                        sameSite: "lax",
+                        sameSite: isProd ? "none" : "lax",
                         maxAge: 60 * 60 * 24 * 7 // 7 days
                     });
                     return {
@@ -69,17 +69,18 @@ export const authOptions: NextAuthOptions = {
                 const res = await registerSocialUser(user.email, user.id, user.image || '');
                 const { accessToken, refreshToken } = res.data;
                 const cookie = await cookies();
+                const isProd = process.env.NODE_ENV === "production";
                 cookie.set("accessToken", accessToken, {
                     httpOnly: true,
                     secure: true,
-                    sameSite: "lax",
+                    sameSite: isProd ? "none" : "lax",
                     maxAge: 60 * 60 * 8 // 8 hours
                 });
 
                 cookie.set("refreshToken", refreshToken, {
                     httpOnly: true,
                     secure: true,
-                    sameSite: "lax",
+                    sameSite: isProd ? "none" : "lax",
                     maxAge: 60 * 60 * 24 * 7 // 7 days
                 });
 
