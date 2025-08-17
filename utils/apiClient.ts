@@ -36,7 +36,7 @@ console.log(typeof window)
   }
   console.log('accessToken',token)
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 
   return config;
