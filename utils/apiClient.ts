@@ -27,11 +27,10 @@ apiClient.interceptors.request.use(async (config) => {
   if (typeof window === "undefined") {
     // ✅ Server-side: Use dynamic import to avoid build issues
     const { cookies } = await import("next/headers");
-    token = (await cookies()).get("token")?.value || "";
+    token = (await cookies()).get("accessToken")?.value || "";
   } else {
     // ✅ Client-side: Use js-cookie
     token = Cookies.get("token") || "";
-    console.log(token)
   }
 
   if (token) {
