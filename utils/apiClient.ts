@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL, CONFIG } from '../config'
+import Cookies from "js-cookie";
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
@@ -19,6 +20,26 @@ const processQueue = (error: any, token: string | null = null) => {
   });
   failedQueue = [];
 };
+
+apiClient.interceptors.request.use(async (config) => {
+  let token = "";
+
+  if (typeof window === "undefined") {
+    // ✅ Server-side: Use dynamic import to avoid build issues
+    const { cookies } = await import("next/headers");
+    token = (await cookies()).get("token")?.value || "";
+  } else {
+    // ✅ Client-side: Use js-cookie
+    token = Cookies.get("token") || "";
+    console.log(token)
+  }
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
 
 apiClient.interceptors.response.use(
   response => response, // if response is OK, just return it
