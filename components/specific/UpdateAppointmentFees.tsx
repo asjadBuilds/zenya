@@ -25,16 +25,16 @@ const UpdateAppointmentFees = () => {
         mutate(fees);
     }
   return (
-    <div className="flex flex-col gap-2 bg-emerald-50 rounded-xl shadow-md w-full p-2">
+    <div className="flex flex-col gap-2 bg-card-primary rounded-xl shadow-md w-full p-2">
         <h1 className="font-sans font-semibold">Update Appointment Fees</h1>
-        <div className="flex items-center gap-2">
+        <div className="flex max-md:flex-col items-center gap-2">
             <Label className="font-mono">Enter Your New Fees:</Label>
             <div className="relative">
                 <Input placeholder="1400" value={fees} onChange={(e)=>setFees(e.target.value)}/>
                 <Badge variant={'outline'} className="absolute top-0 right-0 h-9">PKR</Badge>
             </div>
         </div>
-        <Button className="w-1/4" onClick={handleUpdateFees}>Update Fees</Button>
+        <Button className="w-1/4 max-md:w-full" onClick={handleUpdateFees}>Update Fees</Button>
     </div>
   )
 }

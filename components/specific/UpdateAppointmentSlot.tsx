@@ -34,11 +34,11 @@ const UpdateAppointmentSlot = () => {
         mutate(slots)
     }
     return (
-        <div className="flex flex-col gap-2 bg-emerald-50 rounded-xl shadow-md p-2 w-full">
+        <div className="flex flex-col gap-2 bg-card-primary rounded-xl shadow-md p-2 w-full">
             <h1 className='font-sans font-semibold'>Appointment Settings</h1>
             <div className="flex flex-col gap-3">
                 <h2 className='text-sm font-medium font-sans'>Add Appointment Slots</h2>
-                <div className="flex items-center justify-between gap-4 w-full *:w-1/2">
+                <div className="flex max-md:flex-col items-center justify-between gap-4 w-full *:w-1/2 max-md:*:w-full">
                     <div className='flex flex-col gap-2'>
                         <Datepicker date={date} setDate={setDate} time={time} setTime={setTime} />
                         <Button className='w-1/2' onClick={() => handleAddDate()}>Add Date Time</Button>
@@ -50,7 +50,7 @@ const UpdateAppointmentSlot = () => {
                         )) : <span className='text-sm font-semibold font-mono'>No Slots Yet</span>}
                     </div>
                 </div>
-                <Button className='w-1/4 self-end' onClick={()=>updateHandler()}>Update Appointment Slots</Button>
+                <Button className='w-1/4 max-md:w-full self-end' onClick={()=>updateHandler()}>Update Appointment Slots</Button>
             </div>
         </div>
     )

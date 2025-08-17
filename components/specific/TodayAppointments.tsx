@@ -27,7 +27,7 @@ const TodayAppointments = () => {
         });
     
     return (
-        <div className="flex flex-col bg-emerald-50 p-2 rounded-xl gap-2 shadow-md m-4">
+        <div className="flex flex-col bg-card-primary p-2 rounded-xl gap-2 shadow-md m-4">
             <h1 className="font-sans font-semibold">See Your Today Appointments</h1>
             <Datatable
                 columns={columns}
