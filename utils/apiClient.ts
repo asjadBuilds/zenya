@@ -96,7 +96,7 @@ apiClient.interceptors.response.use(
         processQueue(refreshErr, null);
         // Optionally redirect to login
         if (typeof window !== 'undefined') {
-          // window.location.href = '/login';
+          window.location.href = '/login';
         }
         return Promise.reject(refreshErr);
 
