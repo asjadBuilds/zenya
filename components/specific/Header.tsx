@@ -61,6 +61,7 @@ const Header = () => {
       method: 'POST',
     });
     signOut();
+    router.push('/');
   }
   return (
     <div className='flex justify-between bg-primary px-4 py-2'>
