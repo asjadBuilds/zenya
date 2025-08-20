@@ -42,6 +42,11 @@ const saveRefreshToken = async ({ token, doctorId }: { token: string, doctorId: 
     return res.data
 }
 
+const changePassword = async({oldPassword,newPassword,role}:{oldPassword:string,newPassword:string,role:string})=>{
+    const res = await apiClient.post(CONFIG.changePassword,{oldPassword,newPassword,role});
+    return res.data;
+}
+
 export {
     registerDoctor,
     registerUser,
@@ -50,5 +55,6 @@ export {
     forgetPassword,
     verifyOtp,
     resetPassword,
-    saveRefreshToken
+    saveRefreshToken,
+    changePassword
 }

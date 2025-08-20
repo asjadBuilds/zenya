@@ -20,7 +20,6 @@ export const authOptions: NextAuthOptions = {
                 try {
                     const res = await login({ email: credentials.email, password: credentials.password })
                     const { id, email, role, isVerified, username, avatar, accessToken, refreshToken } = res.data;
-                    // console.log('accessToken: ', accessToken, 'refreshToken: ', refreshToken)
                     const cookie = await cookies();
                     const isProd = process.env.NODE_ENV === "production";
                     cookie.set("accessToken", accessToken, {
@@ -67,7 +66,8 @@ export const authOptions: NextAuthOptions = {
             }
             try {
                 const res = await registerSocialUser(user.email, user.id, user.image || '');
-                const { accessToken, refreshToken } = res.data;
+                const { accessToken, refreshToken, role } = res.data;
+                user.role=role;
                 const cookie = await cookies();
                 const isProd = process.env.NODE_ENV === "production";
                 cookie.set("accessToken", accessToken, {
@@ -92,6 +92,7 @@ export const authOptions: NextAuthOptions = {
         },
         async jwt({ token, user, account }) {
             if (user) {
+                console.log(user)
                 token.id = user.id
                 token.role = user.role
                 token.username = (user as any).username;
@@ -107,6 +108,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.username = token.username as string;
                 session.user.avatar = token.avatar as string;
                 session.user.isVerified = token.isVerified as boolean
+                
             }
             return session
         }

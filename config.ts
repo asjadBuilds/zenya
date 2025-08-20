@@ -25,5 +25,6 @@ export const CONFIG = {
     getReviewsByDoctor: `${BASE_URL}/api/review/getReviewsByDoctor`,
     deleteReview: `${BASE_URL}/api/review/deleteReview`,
     getDoctorAppointments: `${BASE_URL}/api/appointment/getDoctorAppointments`,
-    getChatBotInfo: `${BASE_URL}/api/chatbot/new`
+    getChatBotInfo: `${BASE_URL}/api/chatbot/new`,
+    changePassword: `${BASE_URL}/api/auth/changePassword`
 }
