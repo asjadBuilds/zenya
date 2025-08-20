@@ -58,6 +58,11 @@ const deleteExperience = async(experienceId:string)=>{
     return res.data;
 }
 
+const updateDoctorProfile = async(formData:any)=>{
+    const res = await apiClient.post(CONFIG.updateDoctorProfile,formData);
+    return res.data;
+}
+
 export {
     getDoctorsByCategory,
     getDoctorsByQuery,
@@ -69,5 +74,6 @@ export {
     deleteEducation,
     addExperience,
     editExperience,
-    deleteExperience
+    deleteExperience,
+    updateDoctorProfile
 }

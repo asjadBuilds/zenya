@@ -35,4 +35,5 @@ export const CONFIG = {
     addExperience: `${BASE_URL}/api/doctor/addExperience`,
     editExperience: `${BASE_URL}/api/doctor/editExperience`,
     deleteExperience: `${BASE_URL}/api/doctor/deleteExperience`,
+    updateDoctorProfile: `${BASE_URL}/api/doctor/updateDoctorProfile`
 }
